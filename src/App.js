@@ -9,7 +9,7 @@ function App() {
   return (
   <div className='app-component' >
     <Routes>
-      <Route path='/' element={<Navigate to="/pages" replace={true} />}  ></Route>
+      <Route path='/' element={<Navigate to="/login" replace={true} />}  ></Route>
        <Route path='login' element={<LoginComponent></LoginComponent>}></Route>
        <Route path='pages' element={<PagesComponent></PagesComponent>}></Route>
 
