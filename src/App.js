@@ -1,14 +1,22 @@
-import logo from './logo.svg';
+
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.scss';
-import { Paper } from '@mui/material';
+import LoginComponent from './auth/LoginComponent';
+import PagesComponent from './pages/PagesComponent';
+
 
 function App() {
   return (
-  <div className='app-component mt-5' >
+  <div className='app-component' >
+    <Routes>
+      <Route path='/' element={<Navigate to="/pages" replace={true} />}  ></Route>
+       <Route path='login' element={<LoginComponent></LoginComponent>}></Route>
+       <Route path='pages' element={<PagesComponent></PagesComponent>}></Route>
+
+    </Routes>
         
-        <Paper elevation={3}>
-        App component
-        </Paper>
+       
+       
   </div>
   );
 }
