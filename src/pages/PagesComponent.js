@@ -8,9 +8,12 @@ export default function PagesComponent() {
 
   console.log(isAuthenticated)
   useEffect(()=>{
-    if(!isAuthenticated){
-      navigate('/login')
-    }
+
+    //  console.log("navigate back")
+
+    // if(!isAuthenticated){
+    //   navigate('/login')
+    // }
 
   },[])
 

@@ -13,7 +13,7 @@ Enable SCSS
 npm install sass
 rename all css files to scss
 
-
+https://mui.com/material-ui/
 Add Material UI:
 npm install @mui/material @emotion/react @emotion/styled
 npm install @fontsource/roboto
@@ -21,3 +21,9 @@ npm install @fontsource/roboto
 
 
 npm install react-router-dom
+
+
+https://formik.org/docs/tutorial#setup-for-the-tutori
+npm i formik 
+
+npm install yup
