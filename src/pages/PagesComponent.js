@@ -21,7 +21,10 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import GroupIcon from '@mui/icons-material/Group';
 const drawerWidth = 240;
 
 export default function PagesComponent() {
@@ -87,18 +90,18 @@ export default function PagesComponent() {
         <Divider />
         <List>
           {[
-            { title: "Dashboard", route: "dashboard" },
-            { title: "Categories", route: "categories" },
-            { title: "Products", route: "products" },
-            { title: "Orders", route: "orders" },
-            { title: "Users", route: "users" },
+            { title: "Dashboard", route: "dashboard", icon : <DashboardIcon /> },
+            { title: "Categories", route: "categories", icon : <InboxIcon /> },
+            { title: "Products", route: "products", icon : <InventoryIcon /> },
+            { title: "Orders", route: "orders", icon : <ShoppingCartIcon /> },
+            { title: "Users", route: "users", icon : <GroupIcon /> },
           ].map((obj, index) => (
             <ListItem key={obj.title} disablePadding onClick={()=>{
               navigate(obj.route)
             }}>
               <ListItemButton>
                 <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {obj.icon}
                 </ListItemIcon>
                 <ListItemText primary={obj.title} />
               </ListItemButton>
