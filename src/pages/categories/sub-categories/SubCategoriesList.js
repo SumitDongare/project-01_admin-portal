@@ -4,7 +4,23 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import moment from 'moment';
 
 export default function SubCategoriesList() {
-  const subCategories = useSelector((store) => store.subCategories);
+  const mainCategories = useSelector((store) => store.mainCategories);
+
+  const mapping = mainCategories.reduce((mapp, category)=>{
+     mapp[category.id] = category.name
+     return mapp    
+  }, {})
+
+  console.log(mapping)
+  
+  const subCategoriesData = useSelector((store) => store.subCategories);
+
+  const subCategories = subCategoriesData.map(subCategory => {
+    return {...subCategory, mainCategory : mapping[subCategory.categoryId] }
+  })
+  
+  console.log(subCategories)
+
   return (
     <div>
        <TableContainer component={Paper}>
@@ -27,7 +43,7 @@ export default function SubCategoriesList() {
                 <TableCell component="th" scope="row">
                   {row.name}
                 </TableCell>
-                <TableCell >{row.categoryId}</TableCell>
+                <TableCell >{row.mainCategory}</TableCell>
                 <TableCell >{row.totalItems}</TableCell>
                 <TableCell >{ moment(row.createdAt).format('DD MMM YYYY')}</TableCell>
                 <TableCell ><div>Actions</div></TableCell>
