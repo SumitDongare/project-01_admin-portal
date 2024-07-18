@@ -1,17 +1,40 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import React from "react";
+import { useSelector } from "react-redux";
 
 export default function MainCategoriesList() {
-
-  const mainCategories = useSelector(store => store.mainCategories)
+  const mainCategories = useSelector((store) => store.mainCategories);
   return (
     <div>
-        Main Categories List
-
-        <div>
-        {mainCategories.map(cat => cat.name)}
-        </div>
-      
+      Main Categories List
+      <TableContainer component={Paper}>
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell>Category</TableCell>
+              <TableCell >Description</TableCell>
+              <TableCell >Created At</TableCell>
+              <TableCell >Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {mainCategories.map((row) => (
+              <TableRow
+                key={row.id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <TableCell component="th" scope="row">
+                  {row.name}
+                </TableCell>
+                <TableCell >{row.description}</TableCell>
+                <TableCell >{row.createdAt}</TableCell>
+                <TableCell ><div>Actions</div></TableCell>
+                
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
     </div>
-  )
+  );
 }
