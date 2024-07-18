@@ -1,12 +1,13 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import React from "react";
 import { useSelector } from "react-redux";
+import moment from 'moment';
 
 export default function MainCategoriesList() {
   const mainCategories = useSelector((store) => store.mainCategories);
   return (
     <div>
-      Main Categories List
+      
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -27,7 +28,7 @@ export default function MainCategoriesList() {
                   {row.name}
                 </TableCell>
                 <TableCell >{row.description}</TableCell>
-                <TableCell >{row.createdAt}</TableCell>
+                <TableCell >{ moment(row.createdAt).format('DD MMM YYYY')}</TableCell>
                 <TableCell ><div>Actions</div></TableCell>
                 
               </TableRow>
