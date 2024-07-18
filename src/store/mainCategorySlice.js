@@ -6,6 +6,10 @@ export const mainCategorySlice = createSlice({
         {
             id:'1',
             name:"Electronics"
+        },
+        {
+            id:'2',
+            name:"Clothes"
         }
     ],
 
