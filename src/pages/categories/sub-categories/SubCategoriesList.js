@@ -41,7 +41,7 @@ export default function SubCategoriesList() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                  {row.name}
+                 <img src={row.imageUrl} width={40} height={40} ></img> {row.name}
                 </TableCell>
                 <TableCell >{row.mainCategory}</TableCell>
                 <TableCell >{row.totalItems}</TableCell>
