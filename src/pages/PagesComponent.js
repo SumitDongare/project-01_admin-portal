@@ -21,10 +21,14 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import InboxIcon from "@mui/icons-material/MoveToInbox";
 import MailIcon from "@mui/icons-material/Mail";
-import DashboardIcon from '@mui/icons-material/Dashboard';
-import InventoryIcon from '@mui/icons-material/Inventory';
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import GroupIcon from '@mui/icons-material/Group';
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import InventoryIcon from "@mui/icons-material/Inventory";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import GroupIcon from "@mui/icons-material/Group";
+import ExpandLess from "@mui/icons-material/ExpandLess";
+import ExpandMore from "@mui/icons-material/ExpandMore";
+import Collapse from "@mui/material/Collapse";
+import StarBorder from "@mui/icons-material/StarBorder";
 const drawerWidth = 240;
 
 export default function PagesComponent() {
@@ -41,6 +45,7 @@ export default function PagesComponent() {
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
+  const [menuOpen, setMenuOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -90,22 +95,61 @@ export default function PagesComponent() {
         <Divider />
         <List>
           {[
-            { title: "Dashboard", route: "dashboard", icon : <DashboardIcon /> },
-            { title: "Categories", route: "categories", icon : <InboxIcon /> },
-            { title: "Products", route: "products", icon : <InventoryIcon /> },
-            { title: "Orders", route: "orders", icon : <ShoppingCartIcon /> },
-            { title: "Users", route: "users", icon : <GroupIcon /> },
+            { title: "Dashboard", route: "dashboard", icon: <DashboardIcon /> },
+            {
+              title: "Categories",
+              route: "categories",
+              icon: <InboxIcon />,
+              isCollapsable: true,
+              children: [
+                {
+                  title: "Main Categories",
+                  route: "categories/main-categories",
+                  icon: <DashboardIcon />,
+                },
+                {
+                  title: "Sub Categories",
+                  route: "categories/sub-categories",
+                  icon: <DashboardIcon />,
+                },
+              ],
+            },
+            { title: "Products", route: "products", icon: <InventoryIcon /> },
+            { title: "Orders", route: "orders", icon: <ShoppingCartIcon /> },
+            { title: "Users", route: "users", icon: <GroupIcon /> },
           ].map((obj, index) => (
-            <ListItem key={obj.title} disablePadding onClick={()=>{
-              navigate(obj.route)
-            }}>
-              <ListItemButton>
-                <ListItemIcon>
-                  {obj.icon}
-                </ListItemIcon>
+            <React.Fragment key={obj.title}>
+              <ListItemButton
+                onClick={() => {
+                  navigate(obj.route);
+                  if (obj.isCollapsable) {
+                    setMenuOpen(!menuOpen);
+                  }
+                }}
+              >
+                <ListItemIcon>{obj.icon}</ListItemIcon>
                 <ListItemText primary={obj.title} />
+                {obj.isCollapsable ? (
+                  <>{menuOpen ? <ExpandLess /> : <ExpandMore />}</>
+                ) : null}
               </ListItemButton>
-            </ListItem>
+              {obj.isCollapsable && (
+                <Collapse in={menuOpen} timeout="auto" unmountOnExit>
+                  <List component="div" disablePadding>
+
+                    {obj.children.map(child=>{
+                      return <ListItemButton sx={{ pl: 4 }} onClick={()=> navigate(child.route)}>
+                      <ListItemIcon>
+                        {child.icon}
+                      </ListItemIcon>
+                      <ListItemText primary={child.title} />
+                    </ListItemButton>
+                    })}
+
+                  </List>
+                </Collapse>
+              )}
+            </React.Fragment>
           ))}
         </List>
       </Drawer>
