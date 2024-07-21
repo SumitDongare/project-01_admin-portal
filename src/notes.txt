@@ -39,3 +39,24 @@ https://momentjs.com/
 npm install moment --save     // for date handling
 import moment from 'moment';
 moment().format();
+
+
+
+
+//******** FOR API INTEGRATION ****************//
+npm install json-server    //  for creating server 
+
+npx json-server db.json     // to use db.json as server
+
+http://localhost:3000/categories
+http://localhost:3000/subCategories
+http://localhost:3000/products
+http://localhost:3000/orders
+http://localhost:3000/users
+
+
+
+// Install Postman client in the our pc 
+
+
+npx json-server db.json --port 3001     // to chage the port of server becase React client is on 3000 it should not be on same port
