@@ -1,10 +1,33 @@
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment';
+import { setMainCategories } from "../../../store/mainCategorySlice";
 
 export default function MainCategoriesList() {
   const mainCategories = useSelector((store) => store.mainCategories);
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+    //API Call
+    const data = [ {
+      "id": "1",
+      "name": "Electronics",
+      "description": "Explore a wide range of electronic items"
+    },
+    {
+      "id": "2",
+      "name": "Clothing",
+      "createdAt": "2024-03-14T09:30:00Z",
+      "description": "Discover trendy clothing for all ages"
+    },];
+
+    dispatch(setMainCategories(data))
+   
+       
+  },[])
+
+
   return (
     <div>
       
