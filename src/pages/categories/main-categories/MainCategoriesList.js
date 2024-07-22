@@ -15,11 +15,15 @@ export default function MainCategoriesList() {
     axios.get('http://localhost:3001/categories')
   .then(function (response) {
     // handle success
-    console.log("Categories Response",response);
+    console.log("Categories Response",response.data);
+
+    const data = response.data;
+    dispatch(setMainCategories(data))
+
   })
   .catch(function (error) {
     // handle error
-    console.log(error);
+    console.log("There is an error", error);
   })
   .finally(function () {
     // always executed
@@ -36,7 +40,7 @@ export default function MainCategoriesList() {
       "description": "Discover trendy clothing for all ages"
     },];
 
-    dispatch(setMainCategories(data))
+    
    
        
   },[]) 
