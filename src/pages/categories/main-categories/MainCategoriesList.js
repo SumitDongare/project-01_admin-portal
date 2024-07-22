@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import moment from 'moment';
 import { setMainCategories } from "../../../store/mainCategorySlice";
+import axios from 'axios';
 
 export default function MainCategoriesList() {
   const mainCategories = useSelector((store) => store.mainCategories);
@@ -10,6 +11,19 @@ export default function MainCategoriesList() {
 
   useEffect(()=>{
     //API Call
+
+    axios.get('http://localhost:3001/categories')
+  .then(function (response) {
+    // handle success
+    console.log("Categories Response",response);
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .finally(function () {
+    // always executed
+  });
     const data = [ {
       "id": "1",
       "name": "Electronics",
@@ -25,7 +39,7 @@ export default function MainCategoriesList() {
     dispatch(setMainCategories(data))
    
        
-  },[])
+  },[]) 
 
 
   return (

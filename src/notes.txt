@@ -60,3 +60,7 @@ http://localhost:3000/users
 
 
 npx json-server db.json --port 3001     // to chage the port of server becase React client is on 3000 it should not be on same port
+
+
+https://www.npmjs.com/package/axios   // axios library used to call API call 
+npm install axios
