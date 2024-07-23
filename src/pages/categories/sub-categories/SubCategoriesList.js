@@ -4,6 +4,7 @@ import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow
 import moment from 'moment';
 import axios from 'axios';
 import { setSubCategories } from '../../../store/subCategorySlice';
+import { API_BASE_URL } from '../../../utils/ApiConstants';
 
 export default function SubCategoriesList() {
 
@@ -27,7 +28,7 @@ export default function SubCategoriesList() {
 
   useEffect(()=>{
     //API Call
-    axios.get('http://localhost:3001/subCategories')
+    axios.get(`${API_BASE_URL}/subCategories`)
   .then(function (response) {
     // handle success
     console.log("Categories Response",response.data);

@@ -8,7 +8,7 @@ import * as yup from "yup";
 
 export default function LoginComponent() {
   const navigate = useNavigate();
-  const isAuthenticated = useAuth();
+  // const isAuthenticated = useAuth();
 
   useEffect(() => {
     // if(isAuthenticated){

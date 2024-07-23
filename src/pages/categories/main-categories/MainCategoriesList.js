@@ -1,15 +1,21 @@
-import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import { useSelector } from "react-redux";
 import moment from 'moment';
+import { useNavigate } from "react-router-dom";
 
 
 export default function MainCategoriesList() {
   const mainCategories = useSelector((store) => store.mainCategories);
+  const navigate = useNavigate();
  
 
   return (
     <div>
-      
+      <Button  variant="contained" onClick={()=>{
+        navigate('create')
+      }}>Add Category</Button>
+      <br></br>
+      <br></br>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
