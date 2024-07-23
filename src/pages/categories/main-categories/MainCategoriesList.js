@@ -11,7 +11,6 @@ export default function MainCategoriesList() {
 
   useEffect(()=>{
     //API Call
-
     axios.get('http://localhost:3001/categories')
   .then(function (response) {
     // handle success
@@ -28,21 +27,7 @@ export default function MainCategoriesList() {
   .finally(function () {
     // always executed
   });
-    const data = [ {
-      "id": "1",
-      "name": "Electronics",
-      "description": "Explore a wide range of electronic items"
-    },
-    {
-      "id": "2",
-      "name": "Clothing",
-      "createdAt": "2024-03-14T09:30:00Z",
-      "description": "Discover trendy clothing for all ages"
-    },];
-
-    
-   
-       
+         
   },[]) 
 
 

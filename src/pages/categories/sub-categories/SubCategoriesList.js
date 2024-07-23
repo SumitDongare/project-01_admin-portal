@@ -1,9 +1,13 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import moment from 'moment';
+import axios from 'axios';
+import { setSubCategories } from '../../../store/subCategorySlice';
 
 export default function SubCategoriesList() {
+
+  const dispatch = useDispatch();
   const mainCategories = useSelector((store) => store.mainCategories);
 
   const mapping = mainCategories.reduce((mapp, category)=>{
@@ -11,15 +15,39 @@ export default function SubCategoriesList() {
      return mapp    
   }, {})
 
-  console.log(mapping)
+  // console.log(mapping)
   
   const subCategoriesData = useSelector((store) => store.subCategories);
 
   const subCategories = subCategoriesData.map(subCategory => {
-    return {...subCategory, "mainCategory" : mapping[subCategory.categoryId] }
+    return {...subCategory, mainCategory : mapping[subCategory.categoryId] }
   })
   
-  console.log(subCategories)
+  // console.log(subCategories)
+
+  useEffect(()=>{
+    //API Call
+    axios.get('http://localhost:3001/subCategories')
+  .then(function (response) {
+    // handle success
+    console.log("Categories Response",response.data);
+
+    const data = response.data;
+    dispatch(setSubCategories(data))
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log("There is an error", error);
+  })
+  .finally(function () {
+    // always executed
+  });
+         
+  },[]) 
+
+
+
 
   return (
     <div>
