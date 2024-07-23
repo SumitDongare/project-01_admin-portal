@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
 import moment from 'moment';
 import axios from 'axios';
 import { setSubCategories } from '../../../store/subCategorySlice';
@@ -75,7 +76,7 @@ export default function SubCategoriesList() {
                 <TableCell >{row.mainCategory}</TableCell>
                 <TableCell >{row.totalItems}</TableCell>
                 <TableCell >{ moment(row.createdAt).format('DD MMM YYYY')}</TableCell>
-                <TableCell ><div>Actions</div></TableCell>
+                <TableCell ><DeleteOutlineOutlinedIcon></DeleteOutlineOutlinedIcon></TableCell>
                 
               </TableRow>
             ))}
