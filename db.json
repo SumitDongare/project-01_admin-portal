@@ -35,29 +35,14 @@
       "description": "Explore a wide range of electronic items"
     },
     {
-      "id": 45,
+      "id": "45",
       "name": "Books",
       "description": "Books Category"
     },
     {
-      "id": 49,
+      "id": "49",
       "name": "Books1",
       "description": "Books1 Category "
-    },
-    {
-      "id": 64,
-      "name": "Books2",
-      "description": "Books2 Category"
-    },
-    {
-      "id": 26,
-      "name": "Books3",
-      "description": "Books3 Category"
-    },
-    {
-      "id": 79,
-      "name": "Books4",
-      "description": "Books4 Category"
     }
   ],
   "subCategories": [

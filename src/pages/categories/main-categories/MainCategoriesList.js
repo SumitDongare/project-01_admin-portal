@@ -5,14 +5,36 @@ import moment from 'moment';
 import { useNavigate } from "react-router-dom";
 import ConfirmationDialog from "../../../components/ConfirmationDialog";
 import { useState } from "react";
-import { createPortal } from "react-dom";
+import axios from 'axios';
+import { API_BASE_URL } from "../../../utils/ApiConstants";
+// import { createPortal } from "react-dom";
 
 
 
-export default function MainCategoriesList() {
+export default function MainCategoriesList({getCategories}) {
   const mainCategories = useSelector((store) => store.mainCategories);
   const navigate = useNavigate();
-  const [deletDialogOpen, setDeleteDialogOpen] = useState(false)
+  const [deletDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [categoryToDelete, setCategoryToDelete] = useState(null);
+
+  const deleteCategory = () =>{
+   
+     axios.delete(`${API_BASE_URL}/categories/${categoryToDelete}`)
+     .then(function (response) {
+       // handle success
+      alert('Category deleted!');
+      getCategories();
+      
+     })
+     .catch(function (error) {
+       // handle error
+       console.log("There is an error", error);
+     })
+     .finally(function () {
+       // always executed
+       setCategoryToDelete(null)
+     });
+  }
  
 
   return (
@@ -20,11 +42,14 @@ export default function MainCategoriesList() {
       <ConfirmationDialog title="Confirm?" description="Do you want to delete?" open={deletDialogOpen} handleClose={(flag)=>{
         setDeleteDialogOpen(false)
         if(flag){
-          alert('Deleting!')
+          deleteCategory();
+        }else{
+          setCategoryToDelete(null)
         }
+
       }}></ConfirmationDialog>
 
-      {createPortal(<div>I am in Main Categories: {deletDialogOpen +''} </div>, document.body )}
+      {/* {createPortal(<div>I am in Main Categories: {deletDialogOpen +''} </div>, document.body )} */}
       
       <Button  variant="contained" onClick={()=>{
         navigate('create')
@@ -52,7 +77,10 @@ export default function MainCategoriesList() {
                 </TableCell>
                 <TableCell >{row.description}</TableCell>
                 <TableCell >{ moment(row.createdAt).format('DD MMM YYYY')}</TableCell>
-                <TableCell ><DeleteOutlineOutlinedIcon onClick={()=>setDeleteDialogOpen(true)} ></DeleteOutlineOutlinedIcon></TableCell>
+                <TableCell ><DeleteOutlineOutlinedIcon onClick={()=> {
+                  setDeleteDialogOpen(true)
+                  setCategoryToDelete(row.id)
+                  }} ></DeleteOutlineOutlinedIcon></TableCell>
                 
               </TableRow>
             ))}

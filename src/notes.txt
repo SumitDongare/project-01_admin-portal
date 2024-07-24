@@ -64,3 +64,6 @@ npx json-server db.json --port 3001     // to chage the port of server becase Re
 
 https://www.npmjs.com/package/axios   // axios library used to call API call 
 npm install axios
+
+
+{createPortal( <div>I am in Main Categories: {deleteDialogOpen+''} </div>, document.body)}  // createPortal is used to change the pysical apearance in document but logical apearance is on the same place//

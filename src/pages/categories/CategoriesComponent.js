@@ -41,7 +41,7 @@ export default function CategoriesComponent() {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="main-categories" replace={true} />}></Route>
-      <Route path="main-categories" element={<MainCategoriesList ></MainCategoriesList>}></Route>
+      <Route path="main-categories" element={<MainCategoriesList getCategories={getCategories} ></MainCategoriesList>}></Route>
       <Route path="main-categories/create" element={<CreateMainCategory getCategories={getCategories}></CreateMainCategory>}></Route>
       <Route path="sub-categories" element={<SubCategoriesList></SubCategoriesList>}></Route>
       <Route path="sub-categories/create" element={<CreateSubCategory></CreateSubCategory>}></Route>
