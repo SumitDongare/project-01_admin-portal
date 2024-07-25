@@ -7,6 +7,7 @@ import { Description } from "@mui/icons-material";
 import axios from "axios";
 import { API_BASE_URL } from "../../../utils/ApiConstants";
 import { useSelector } from "react-redux";
+import FileDragDrop from "../../../components/FileDragDrop";
 
 export default function CreateSubCategory() {
   const navigate = useNavigate();
@@ -100,12 +101,9 @@ export default function CreateSubCategory() {
             label="Select"
             fullWidth
             defaultValue=""
-            helperText="Please select your currency"
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={
-              formik.touched.categoryId && Boolean(formik.errors.categoryId)
-            }
+            error={formik.touched.categoryId && Boolean(formik.errors.categoryId)}
             helperText = {formik.touched.categoryId && formik.errors.categoryId}
 
           >  
@@ -117,10 +115,12 @@ export default function CreateSubCategory() {
               </MenuItem>
               })}
 
-            
           </TextField>
 
+          <br></br>
+          Category Image
 
+          <FileDragDrop></FileDragDrop>
 
           <Button variant="contained" type="submit" className="mt-5">
             Create Category

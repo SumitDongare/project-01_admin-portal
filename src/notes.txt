@@ -67,3 +67,6 @@ npm install axios
 
 
 {createPortal( <div>I am in Main Categories: {deleteDialogOpen+''} </div>, document.body)}  // createPortal is used to change the pysical apearance in document but logical apearance is on the same place//
+
+https://react-dropzone.js.org/      // using for drag and drop feature
+npm install react-dropzone
