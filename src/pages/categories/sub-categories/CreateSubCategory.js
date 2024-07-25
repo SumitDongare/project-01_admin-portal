@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { Button, MenuItem, Paper, TextField } from "@mui/material";
@@ -12,6 +12,7 @@ import FileDragDrop from "../../../components/FileDragDrop";
 export default function CreateSubCategory() {
   const navigate = useNavigate();
   const mainCategories = useSelector((store) => store.mainCategories);
+  const [imageUrl, setImageUrl] = useState('')
 
   const validationSchema = yup.object({
     name: yup.string("Enter your email").required("Name is required"),
@@ -32,29 +33,31 @@ export default function CreateSubCategory() {
     onSubmit: (values) => {
       // API call
       console.log(values)
-      // axios
-      //   .post(`${API_BASE_URL}/categories`, {
-      //     id: Math.floor(Math.random() * (100 - 10 + 1)) + 10, //Generate random id from 10-100
-      //     name: values.name,
-      //     description: values.description,
-      //   })
-      //   .then(function (response) {
-      //     // handle success
-      //     // console.log("Categories Response",response.data);
+      axios
+        .post(`${API_BASE_URL}/subCategories`, {
+          "id": Math.floor(Math.random() * (100 - 10 + 1)) + 10, //Generate random id from 10-100
+          "name": values.name,
+          "description": values.description,
+          "categoryId": values.categoryId, 
+          imageUrl
+        })
+        .then(function (response) {
+          // handle success
+          // console.log("Categories Response",response.data);
 
-      //     // const data = response.data;
-      //     alert("Category created!");
-      //     // getCategories();
-      //     navigate(-1);
-      //   })
-      //   .catch(function (error) {
-      //     // handle error
-      //     alert("Failed to create category");
-      //     console.log("There is an error", error);
-      //   })
-      //   .finally(function () {
-      //     // always executed
-      //   });
+         
+          alert("Sub Category created!");
+          
+          navigate(-1);
+        })
+        .catch(function (error) {
+          // handle error
+          alert("Failed to create category");
+          console.log("There is an error", error);
+        })
+        .finally(function () {
+          // always executed
+        });
     },
   });
 
@@ -120,7 +123,13 @@ export default function CreateSubCategory() {
           <br></br>
           Category Image
 
-          <FileDragDrop></FileDragDrop>
+          <FileDragDrop onFileDrop = {(file)=>{
+            //API Call
+            const url = "https://images.pexels.com/photos/26441311/pexels-photo-26441311/free-photo-of-seagull.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
+
+            setImageUrl(url)
+
+          }}> </FileDragDrop>
 
           <Button variant="contained" type="submit" className="mt-5">
             Create Category

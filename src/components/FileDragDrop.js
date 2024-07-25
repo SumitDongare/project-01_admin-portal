@@ -2,9 +2,16 @@ import React from 'react'
 import {useDropzone} from 'react-dropzone';
 import "react-dropzone/examples/theme.css";
 
-export default function FileDragDrop() {
+export default function FileDragDrop(onFileDrop) {
 
-    const {acceptedFiles, getRootProps, getInputProps} = useDropzone();
+    const {acceptedFiles, getRootProps, getInputProps} = useDropzone({
+        onDrop:(files) => {
+            
+            onFileDrop(files[0])
+        }
+    });
+
+   
   
     const files = acceptedFiles.map(file => (
       <li key={file.path}>
