@@ -1,11 +1,37 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import moment from 'moment';
+import axios from 'axios';
+import { API_BASE_URL } from './../../utils/ApiConstants';
+import {setOrders} from './../../store/ordersSlice';
 
 export default function OrdersComponent() {
 
-  const orders = useSelector((store) => store.orders);
+  const orders = useSelector(store => store.orders);
+  const dispatch = useDispatch();
+
+
+  useEffect(()=>{
+    //API Call
+    axios.get(`${API_BASE_URL}/orders`)
+  .then(function (response) {
+    // handle success
+    console.log("Orders Response",response.data);
+
+    const data = response.data;
+    dispatch(setOrders(data))
+
+  })
+  .catch(function (error) {
+    // handle error
+    console.log("There is an error", error);
+  })
+  .finally(function () {
+    // always executed
+  });
+         
+  },[]) 
  
   return (
     <div>
@@ -28,7 +54,7 @@ export default function OrdersComponent() {
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
-                 <img src={row.imageUrl} width={40} height={40} ></img> {row.name}
+                 <img src={row.imageUrl} width={40} height={40} ></img> {row.productId}
                 </TableCell>
                 <TableCell >{ moment(row.createdAt).format('DD MMM YYYY')}</TableCell>
                 <TableCell >{row.status}</TableCell>
