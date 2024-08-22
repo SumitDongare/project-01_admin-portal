@@ -75,3 +75,7 @@ npm install react-dropzone
 
 
  npm run build //is used to build the production build - it creates build folder
+
+
+https://mui.com/x/react-charts/getting-started/   
+ npm install @mui/x-charts                       // using for charts

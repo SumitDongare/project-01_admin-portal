@@ -32,6 +32,8 @@ import StarBorder from "@mui/icons-material/StarBorder";
 import CategoriesComponent from "./categories/CategoriesComponent";
 import OrdersComponent from "./orders/OrdersComponent";
 import ProductsWrapper from "./products/ProductsWrapper";
+import DashboardComponent from "./dashboard/Dashboard";
+
 const drawerWidth = 240;
 
 export default function PagesComponent() {
@@ -167,7 +169,7 @@ export default function PagesComponent() {
             ></Route>
             <Route
               path="dashboard"
-              element={<div>Dashboard component</div>}
+              element={<DashboardComponent></DashboardComponent>}
             ></Route>
             <Route
               path="categories/*"
