@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined';
@@ -14,10 +14,12 @@ export default function SubCategoriesList() {
   const navigate = useNavigate();
   const mainCategories = useSelector((store) => store.mainCategories);
 
-  const mapping = mainCategories.reduce((mapp, category)=>{
-     mapp[category.id] = category.name
-     return mapp    
-  }, {})
+  const mapping = useMemo(()=>{
+     return mainCategories.reduce((mapp, category)=>{
+      mapp[category.id] = category.name
+      return mapp    
+   }, {})
+  },[mainCategories])
 
   // console.log(mapping)
   
