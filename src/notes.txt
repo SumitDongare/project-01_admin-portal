@@ -70,3 +70,8 @@ npm install axios
 
 https://react-dropzone.js.org/      // using for drag and drop feature
 npm install react-dropzone
+
+
+
+
+ npm run build //is used to build the production build - it creates build folder

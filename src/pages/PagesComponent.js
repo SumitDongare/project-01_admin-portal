@@ -31,6 +31,7 @@ import Collapse from "@mui/material/Collapse";
 import StarBorder from "@mui/icons-material/StarBorder";
 import CategoriesComponent from "./categories/CategoriesComponent";
 import OrdersComponent from "./orders/OrdersComponent";
+import ProductsWrapper from "./products/ProductsWrapper";
 const drawerWidth = 240;
 
 export default function PagesComponent() {
@@ -129,8 +130,8 @@ export default function PagesComponent() {
                   }
                 }}
               >
-                <ListItemIcon>{obj.icon}</ListItemIcon>
-                <ListItemText primary={obj.title} />
+                <ListItemIcon>{obj.icon}</ListItemIcon> 
+                <ListItemText primary={obj.title} /> 
                 {obj.isCollapsable ? (
                   <>{menuOpen ? <ExpandLess /> : <ExpandMore />}</>
                 ) : null}
@@ -154,7 +155,7 @@ export default function PagesComponent() {
             </React.Fragment>
           ))}
         </List>
-      </Drawer>
+      </Drawer> 
       <Main open={open}>
         <DrawerHeader />
         <div>
@@ -173,14 +174,14 @@ export default function PagesComponent() {
               element={<CategoriesComponent></CategoriesComponent>}
             ></Route>
             <Route
-              path="products"
-              element={<div>Products component</div>}
+              path="products/*"
+              element={<ProductsWrapper></ProductsWrapper>}
             ></Route>
             <Route path="orders" element={<OrdersComponent></OrdersComponent>}></Route>
             <Route path="Users" element={<div>Users component</div>}></Route>
           </Routes>
         </div>
-      </Main>
+      </Main> 
     </Box>
   );
 }
