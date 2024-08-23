@@ -1,4 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { API_BASE_URL } from "../utils/ApiConstants";
+import axios from 'axios';
+
+export const fetchMainCategories = createAsyncThunk('fetch-main-categories', async()=> {
+
+    return axios.get(`${API_BASE_URL}/categories`)
+    .then(function (response){
+        //handle success
+        const data = response.data;
+        return data;
+    })
+    .catch(function (error){
+        //handle error
+        console.log("There is an error", error)
+    })
+})
 
 export const mainCategorySlice = createSlice({
     name : "Main Categories",
@@ -11,6 +27,14 @@ export const mainCategorySlice = createSlice({
             state = action.payload;
             return state
         }
+    },
+
+    extraReducers:(builder)=>{
+        builder.addCase(fetchMainCategories.fulfilled, (state, action)=>{
+            state = action.payload;
+            return state;
+        })
+
     }
 
 })
