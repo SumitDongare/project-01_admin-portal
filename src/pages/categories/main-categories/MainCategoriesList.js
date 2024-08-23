@@ -67,8 +67,11 @@ export default function MainCategoriesList({getCategories}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {mainCategories.dd.map((row) => (
+            {mainCategories.map((row) => (
               <TableRow
+               onClick={()=>{
+                navigate('details/'+row.id)
+               }}
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
