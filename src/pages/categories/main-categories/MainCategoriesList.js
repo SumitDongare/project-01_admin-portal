@@ -67,7 +67,7 @@ export default function MainCategoriesList({getCategories}) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {mainCategories.map((row) => (
+            {mainCategories.dd.map((row) => (
               <TableRow
                 key={row.id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}

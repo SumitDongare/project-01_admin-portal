@@ -53,7 +53,7 @@ export default function PagesComponent() {
   const [menuOpen, setMenuOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
-    setOpen(true);
+      setOpen(true);
   };
 
   const handleDrawerClose = () => {
