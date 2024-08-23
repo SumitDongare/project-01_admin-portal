@@ -1,10 +1,12 @@
 import { Button } from "@mui/material"
 import { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams, useSearchParams } from "react-router-dom"
 
 
 export const CategoryDetails = ()=>{
-    const {id} = useParams();
+    const params = useParams();
+    const [searchParams] = useSearchParams()
+    console.log(searchParams.get('search'))
     const navigate = useNavigate();
 
     useEffect(()=>{
@@ -13,7 +15,7 @@ export const CategoryDetails = ()=>{
 
     return <div>
         <Button onClick = {()=> navigate(-1)}>Back</Button>
-        Category details : {id}
+        Category details : {params.id}
     </div>
 }
 

@@ -79,3 +79,7 @@ npm install react-dropzone
 
 https://mui.com/x/react-charts/getting-started/   
  npm install @mui/x-charts                       // using for charts
+
+
+
+ https://www.npmjs.com/package/react-error-boundary     // for Error Baundary also can use library 
