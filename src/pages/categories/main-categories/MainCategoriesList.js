@@ -68,7 +68,7 @@ export default function MainCategoriesList({getCategories}) {
           </TableHead>
           <TableBody>
             {mainCategories.map((row) => (
-              <TableRow
+              <TableRow 
                onClick={()=>{
                 navigate('details/'+row.id)
                }}

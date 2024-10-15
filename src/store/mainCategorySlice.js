@@ -40,5 +40,5 @@ export const mainCategorySlice = createSlice({
 
 })
 
-export const {setMainCategories} = mainCategorySlice.actions;
+export const {setMainCategories } = mainCategorySlice.actions;
 export default mainCategorySlice.reducer

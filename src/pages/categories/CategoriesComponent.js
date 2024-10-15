@@ -5,21 +5,19 @@ import CreateMainCategory from "./main-categories/CreateMainCategory";
 import CreateSubCategory from "./sub-categories/CreateSubCategory";
 import React, { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  fetchMainCategories,
-  setMainCategories,
-} from "../../store/mainCategorySlice";
+import { setMainCategories,} from "../../store/mainCategorySlice";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/ApiConstants";
 import { ErrorBoundary } from "../../components/ErrorBoundary";
 import { CategoryDetails } from "./main-categories/CategoryDetails";
+import { fetchMainCategories } from "../../store/thunks";
 
 export default function CategoriesComponent() {
   const dispatch = useDispatch();
 
   const getCategories = useCallback(() => {
 
-    dispatch(fetchMainCategories);
+    dispatch(fetchMainCategories());
     // axios
     //   .get(`${API_BASE_URL}/categories`)
     //   .then(function (response) {
@@ -45,6 +43,7 @@ export default function CategoriesComponent() {
 
     
   }, []);
+
   return (
     <Routes>
       <Route
@@ -55,10 +54,10 @@ export default function CategoriesComponent() {
         path="main-categories"
         element={
           <ErrorBoundary>
-            {" "}
+          
             <MainCategoriesList
               getCategories={getCategories}
-            ></MainCategoriesList>{" "}
+            ></MainCategoriesList>
           </ErrorBoundary>
         }
       ></Route>
