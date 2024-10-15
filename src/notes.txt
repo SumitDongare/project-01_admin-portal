@@ -92,3 +92,7 @@ https://npmtrends.com/                           // using to check most download
 
 
  https://www.npmjs.com/package/lodash.debounce       // library for debouncing  
+
+
+ loadash.debounce                 // library for debounce
+ loadash.throttling                 // library for throttling 
